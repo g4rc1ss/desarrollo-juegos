@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PongGame", "PongGame\PongGame.csproj", "{34774CC4-331D-446C-80B7-06EEF93155C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TicTacToe", "TicTacToe\TicTacToe.csproj", "{584FB75B-B0BA-4634-B56C-C3A191B43FCE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{6628B03F-DA8D-47CC-A0DC-8EBB7751FA91}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{34774CC4-331D-446C-80B7-06EEF93155C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34774CC4-331D-446C-80B7-06EEF93155C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34774CC4-331D-446C-80B7-06EEF93155C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34774CC4-331D-446C-80B7-06EEF93155C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{584FB75B-B0BA-4634-B56C-C3A191B43FCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{584FB75B-B0BA-4634-B56C-C3A191B43FCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{584FB75B-B0BA-4634-B56C-C3A191B43FCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{584FB75B-B0BA-4634-B56C-C3A191B43FCE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
