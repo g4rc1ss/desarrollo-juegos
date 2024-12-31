@@ -29,13 +29,23 @@ _ = Task.Run(() =>
     while (true)
     {
         var key = Console.ReadKey(true);
+        var headDirection = snakeParts.First().Direction;
+
+        if (headDirection == Directions.Up && key.Key == ConsoleKey.DownArrow
+            || headDirection == Directions.Down && key.Key == ConsoleKey.UpArrow
+            || headDirection == Directions.Left && key.Key == ConsoleKey.RightArrow
+            || headDirection == Directions.Right && key.Key == ConsoleKey.LeftArrow)
+        {
+            continue;
+        }
+
         snakeParts.First().Direction = key.Key switch
         {
             ConsoleKey.UpArrow => Directions.Up,
             ConsoleKey.LeftArrow => Directions.Left,
             ConsoleKey.RightArrow => Directions.Right,
             ConsoleKey.DownArrow => Directions.Down,
-            _ => snakeParts.First().Direction
+            _ => headDirection
         };
     }
 });
@@ -91,7 +101,7 @@ void MoveSnake()
 bool CheckColision()
 {
     var snakeHead = snakeParts.First();
-    var isBoardLimit = (snakeHead.X < 0 || snakeHead.Y < 0)
+    var isBoardLimit = (snakeHead.X <= 0 || snakeHead.Y <= 0)
                        || (snakeHead.X >= height || snakeHead.Y >= width)
                        || board[snakeHead.X, snakeHead.Y] == BOARD_SYMBOL;
 
@@ -132,8 +142,8 @@ void CreateBall()
 
     do
     {
-        xBall = new Random().Next(1, height);
-        yBall = new Random().Next(1, width);
+        xBall = new Random().Next(3, height);
+        yBall = new Random().Next(3, width);
     } while (snakeParts.Any(x => x.X == xBall && x.Y == yBall));
 
     ball = (xBall, yBall);
