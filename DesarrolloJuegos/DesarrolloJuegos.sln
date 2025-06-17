@@ -7,6 +7,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "config", "config", "{6628B03F-DA8D-47CC-A0DC-8EBB7751FA91}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
+		Directory.Build.props = Directory.Build.props
+		.editorconfig = .editorconfig
+		.csharpierrc.json = .csharpierrc.json
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Snake", "Snake\Snake.csproj", "{FA07626D-C522-48F2-9C9F-895B2C817A3D}"

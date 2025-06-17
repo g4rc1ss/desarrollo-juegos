@@ -1,0 +1,16 @@
+<Project>
+    <PropertyGroup>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <AnalysisLevelDocumentation>latest</AnalysisLevelDocumentation>
+        <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+        <Nullable>enable</Nullable>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="CSharpier.MsBuild" Version="*">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+</Project>

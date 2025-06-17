@@ -8,11 +8,14 @@ namespace TicTacToe;
 
 public partial class MainWindow : Window
 {
-    private bool turno;
-    private readonly int[] partida = new int[9];
-    private int victorias1 = 0, victorias2 = 0;
-    private readonly List<Ellipse> circulos = new();
-    private readonly List<Grid> aspas = new();
+    private bool _turno;
+    private readonly int[] _partida = new int[9];
+
+    private int _victorias1 = 0,
+        _victorias2 = 0;
+
+    private readonly List<Ellipse> _circulos = new();
+    private readonly List<Grid> _aspas = new();
 
     public MainWindow()
     {
@@ -23,50 +26,50 @@ public partial class MainWindow : Window
 
     private void CargarLista()
     {
-        circulos.Add(C1);
-        circulos.Add(C2);
-        circulos.Add(C3);
-        circulos.Add(C4);
-        circulos.Add(C5);
-        circulos.Add(C6);
-        circulos.Add(C7);
-        circulos.Add(C8);
-        circulos.Add(C9);
-        aspas.Add(X1);
-        aspas.Add(X2);
-        aspas.Add(X3);
-        aspas.Add(X4);
-        aspas.Add(X5);
-        aspas.Add(X6);
-        aspas.Add(X7);
-        aspas.Add(X8);
-        aspas.Add(X9);
+        _circulos.Add(C1);
+        _circulos.Add(C2);
+        _circulos.Add(C3);
+        _circulos.Add(C4);
+        _circulos.Add(C5);
+        _circulos.Add(C6);
+        _circulos.Add(C7);
+        _circulos.Add(C8);
+        _circulos.Add(C9);
+        _aspas.Add(X1);
+        _aspas.Add(X2);
+        _aspas.Add(X3);
+        _aspas.Add(X4);
+        _aspas.Add(X5);
+        _aspas.Add(X6);
+        _aspas.Add(X7);
+        _aspas.Add(X8);
+        _aspas.Add(X9);
     }
 
     private void Inicio()
     {
-        foreach (var circulo in circulos)
+        foreach (Ellipse circulo in _circulos)
         {
             circulo.IsVisible = false;
         }
 
-        foreach (var aspa in aspas)
+        foreach (Grid aspa in _aspas)
         {
             aspa.IsVisible = false;
         }
 
         lblTurno.Content = "Jugador 1";
-        turno = true;
+        _turno = true;
 
-        for (var i = 0; i < 9; i++)
+        for (int i = 0; i < 9; i++)
         {
-            partida[i] = 0;
+            _partida[i] = 0;
         }
     }
 
-    private void Tablero_MouseLeftButtonDown(object sender, PointerPressedEventArgs e)
+    private void Tablero_MouseLeftButtonDown(object? sender, PointerPressedEventArgs e)
     {
-        var fuente = Tablero.GetVisualAt(e.GetPosition(Tablero)) as Control;
+        Control? fuente = Tablero.GetVisualAt(e.GetPosition(Tablero)) as Control;
         switch (fuente?.Name)
         {
             case "Rect1":
@@ -110,22 +113,22 @@ public partial class MainWindow : Window
 
     private void Mostrar(int cuadradito)
     {
-        if (partida[cuadradito - 1] != 0)
+        if (_partida[cuadradito - 1] != 0)
         {
             return;
         }
 
-        if (turno)
+        if (_turno)
         {
             // turno del jugador 1
-            partida[cuadradito - 1] = 1;
-            aspas[cuadradito - 1].IsVisible = true;
+            _partida[cuadradito - 1] = 1;
+            _aspas[cuadradito - 1].IsVisible = true;
         }
         else
         {
             //turno del jugador 2
-            partida[cuadradito - 1] = 2;
-            circulos[cuadradito - 1].IsVisible = true;
+            _partida[cuadradito - 1] = 2;
+            _circulos[cuadradito - 1].IsVisible = true;
         }
 
         if (ComprobarFinal())
@@ -133,7 +136,7 @@ public partial class MainWindow : Window
             return;
         }
 
-        if (turno)
+        if (_turno)
         {
             lblTurno.Content = "Jugador 2";
         }
@@ -142,46 +145,50 @@ public partial class MainWindow : Window
             lblTurno.Content = "Jugador 1";
         }
 
-        turno = !turno;
+        _turno = !_turno;
     }
 
     private bool ComprobarFinal()
     {
-        if ((partida[0] == 1 && partida[1] == 1 && partida[2] == 1) ||
-            (partida[3] == 1 && partida[4] == 1 && partida[5] == 1) ||
-            (partida[6] == 1 && partida[7] == 1 && partida[8] == 1) ||
-            (partida[0] == 1 && partida[3] == 1 && partida[6] == 1) ||
-            (partida[1] == 1 && partida[4] == 1 && partida[7] == 1) ||
-            (partida[2] == 1 && partida[5] == 1 && partida[8] == 1) ||
-            (partida[0] == 1 && partida[4] == 1 && partida[8] == 1) ||
-            (partida[2] == 1 && partida[4] == 1 && partida[6] == 1))
+        if (
+            (_partida[0] == 1 && _partida[1] == 1 && _partida[2] == 1)
+            || (_partida[3] == 1 && _partida[4] == 1 && _partida[5] == 1)
+            || (_partida[6] == 1 && _partida[7] == 1 && _partida[8] == 1)
+            || (_partida[0] == 1 && _partida[3] == 1 && _partida[6] == 1)
+            || (_partida[1] == 1 && _partida[4] == 1 && _partida[7] == 1)
+            || (_partida[2] == 1 && _partida[5] == 1 && _partida[8] == 1)
+            || (_partida[0] == 1 && _partida[4] == 1 && _partida[8] == 1)
+            || (_partida[2] == 1 && _partida[4] == 1 && _partida[6] == 1)
+        )
         {
-            Victorias1.Content = ++victorias1;
+            Victorias1.Content = ++_victorias1;
             // MessageBox.Show("Gana el jugador 1");
             Inicio();
             return true;
         }
 
-        if ((partida[0] == 2 && partida[1] == 2 && partida[2] == 2) ||
-            (partida[3] == 2 && partida[4] == 2 && partida[5] == 2) ||
-            (partida[6] == 2 && partida[7] == 2 && partida[8] == 2) ||
-            (partida[0] == 2 && partida[3] == 2 && partida[6] == 2) ||
-            (partida[1] == 2 && partida[4] == 2 && partida[7] == 2) ||
-            (partida[2] == 2 && partida[5] == 2 && partida[8] == 2) ||
-            (partida[0] == 2 && partida[4] == 2 && partida[8] == 2) ||
-            (partida[2] == 2 && partida[4] == 2 && partida[6] == 2))
+        if (
+            (_partida[0] == 2 && _partida[1] == 2 && _partida[2] == 2)
+            || (_partida[3] == 2 && _partida[4] == 2 && _partida[5] == 2)
+            || (_partida[6] == 2 && _partida[7] == 2 && _partida[8] == 2)
+            || (_partida[0] == 2 && _partida[3] == 2 && _partida[6] == 2)
+            || (_partida[1] == 2 && _partida[4] == 2 && _partida[7] == 2)
+            || (_partida[2] == 2 && _partida[5] == 2 && _partida[8] == 2)
+            || (_partida[0] == 2 && _partida[4] == 2 && _partida[8] == 2)
+            || (_partida[2] == 2 && _partida[4] == 2 && _partida[6] == 2)
+        )
         {
-            victorias2++;
-            Victorias2.Content = victorias2;
+            _victorias2++;
+            Victorias2.Content = _victorias2;
             // MessageBox.Show("Gana el jugador 2");
             Inicio();
             return true;
         }
 
-        var final = true;
-        for (var i = 0; i < 9 && final; i++)
+        bool final = true;
+        for (int i = 0; i < 9 && final; i++)
         {
-            if (partida[i] == 0)
+            if (_partida[i] == 0)
             {
                 final = false;
             }
@@ -199,7 +206,7 @@ public partial class MainWindow : Window
 
     private void Tablero_OnPointerPressed(object? sender, PointerPressedEventArgs e)
     {
-        if (e?.GetCurrentPoint(this).Properties.IsLeftButtonPressed ?? false)
+        if (e.GetCurrentPoint(this).Properties.IsLeftButtonPressed)
         {
             Tablero_MouseLeftButtonDown(sender, e);
         }
